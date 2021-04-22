@@ -4,13 +4,21 @@
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   <% end %>
-  <%= f.field_container :about_us do %>
+	<%= f.field_container :phone_number do %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :contact_us, class: 'form-control' %>
+  <% end %>
+	<%= f.field_container :notification_email do%>
+    <%= f.label :notification_email %>
+    <%= f.email_field :notification_email, class: 'form-control' %>
+  <% end %>
+  <%= f.field_container :address do %>
+    <%= f.label :address %>
+    <%= f.text_area :contact_us, class: 'form-control' %>
+  <% end %>
+	<%= f.field_container :about_us do %>
     <%= f.label :about_us %>
     <%= f.text_area :about_us, class: 'form-control' %>
-  <% end %>
-  <%= f.field_container :contact_us do %>
-    <%= f.label :contact_us %>
-    <%= f.text_area :contact_us, class: 'form-control' %>
   <% end %>
   <%= f.field_container :state do %>
     <%= f.label :state %>
@@ -27,10 +35,10 @@
   <% end %>
   <%= f.field_container :commission_rate do %>
     <%= f.label :commission_rate %>
-    <%= f.number_field :commission_rate, step: '0.01', class: 'form-control' %>
-  <% end %>
-  <%= f.field_container :notification_email do%>
-    <%= f.label :notification_email %>
-    <%= f.email_field :notification_email, class: 'form-control' %>
+		<% if spree_current_user.admin? %>
+    	<%= f.number_field :commission_rate, step: '0.01', class: 'form-control' %>
+		<% else %>
+			<span><%= @vendor.commission_rate %></span>
+		<% end %>
   <% end %>
 </div>
